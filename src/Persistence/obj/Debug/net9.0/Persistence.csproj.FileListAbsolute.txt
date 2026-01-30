@@ -1,0 +1,15 @@
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/bin/Debug/net9.0/Persistence.deps.json
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/bin/Debug/net9.0/Persistence.dll
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/bin/Debug/net9.0/Persistence.pdb
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/Persistence.GeneratedMSBuildEditorConfig.editorconfig
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/Persistence.AssemblyInfoInputs.cache
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/Persistence.AssemblyInfo.cs
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/Persistence.csproj.CoreCompileInputs.cache
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/Persistence.dll
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/refint/Persistence.dll
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/Persistence.pdb
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/ref/Persistence.dll
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/bin/Debug/net9.0/Domain.dll
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/bin/Debug/net9.0/Domain.pdb
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/Persistence.csproj.AssemblyReference.cache
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/Persiste.61C28332.Up2Date
