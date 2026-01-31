@@ -9,6 +9,6 @@ public class Curso : BaseEntity
     public ICollection<CursoPrecio>? CursoPrecios { get; set; }
     public ICollection<Instructor>? Instructores { get; set; }
     public ICollection<CursoInstructor>? CursoInstructores { get; set; }
-    public ICollection<Photo>? Fotos { get; set; }
+    public ICollection<Foto>? Fotos { get; set; }
 
 }
