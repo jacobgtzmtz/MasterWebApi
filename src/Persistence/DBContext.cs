@@ -8,9 +8,16 @@ namespace Persistence
     {
         //Crear cadena de conexion
         //Mapear Modelos a tablas
+        public MasterNetDBContext(){}
         public MasterNetDBContext(DbContextOptions<MasterNetDBContext> options) : base(options)
         {
         }
+
+        public DbSet<Curso>? Cursos { get; set; }
+        public DbSet<Instructor>? Instructores { get; set; }
+        public DbSet<Precio>? Precios { get; set; }
+        public DbSet<Calificacion>? Calificaciones { get; set; }
+        public DbSet<Foto>? Fotos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
