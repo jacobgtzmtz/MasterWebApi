@@ -1,6 +1,6 @@
 namespace Domain
 {
-    public class Photo: BaseEntity
+    public class Foto: BaseEntity
     {
         public string? Url { get; set; }
         public Guid? CursoId { get; set; }
