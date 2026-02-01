@@ -13,3 +13,6 @@
 /home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/bin/Debug/net9.0/Domain.pdb
 /home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/Persistence.csproj.AssemblyReference.cache
 /home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/Persiste.61C28332.Up2Date
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/bin/Debug/net9.0/Persistence.runtimeconfig.json
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/Persistence.sourcelink.json
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Persistence/obj/Debug/net9.0/Persistence.genruntimeconfig.cache

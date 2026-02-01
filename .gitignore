@@ -1,0 +1,10 @@
+# Directorios de salida de compilación (Debug y Release)
+[Bb]in/
+[Oo]bj/
+
+# Archivos temporales de Visual Studio y configuraciones de usuario
+.vs/
+*.user
+
+# Archivos de log
+*.log

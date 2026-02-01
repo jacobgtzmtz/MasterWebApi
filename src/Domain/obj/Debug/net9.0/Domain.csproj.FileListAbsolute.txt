@@ -9,3 +9,4 @@
 /home/jacob/Documentos/lab/NET/MasterWebApi/src/Domain/obj/Debug/net9.0/refint/Domain.dll
 /home/jacob/Documentos/lab/NET/MasterWebApi/src/Domain/obj/Debug/net9.0/Domain.pdb
 /home/jacob/Documentos/lab/NET/MasterWebApi/src/Domain/obj/Debug/net9.0/ref/Domain.dll
+/home/jacob/Documentos/lab/NET/MasterWebApi/src/Domain/obj/Debug/net9.0/Domain.sourcelink.json
