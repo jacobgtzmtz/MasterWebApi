@@ -80,7 +80,7 @@ namespace Persistence
                     .WithMany(ci => ci.CursoInstructores)
                     .HasForeignKey(ci => ci.CursoId),
                 j => 
-                { j.HasKey(t => new {t.InstructorIdId, t.CursoId}); }
+                { j.HasKey(t => new {t.InstructorId, t.CursoId}); }
             );               
         } 
     }
