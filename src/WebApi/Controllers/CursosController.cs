@@ -4,6 +4,7 @@ using Application.Cursos.CursoCreate;
 using System.Threading.Tasks;
 using System;
 using System.Threading;
+using static Application.Cursos.CursoReporteExcel.CursoReporteExcelQuery;
 
 
 //Para las versiones de SDK 9 no viene configurado los controles en el program así que hay que agregarlos manualmente
@@ -27,6 +28,14 @@ namespace Controllers
             var command = new CursoCreateCommand.CursoCreateCommandRequest(request);
             var resultado = await _sender.Send(command);
             return Ok(resultado);
+        }
+
+        [HttpGet("reporte")]
+        public async Task<ActionResult>CursoReporteExcel(CancellationToken cancellationToken)
+        {
+            var query = new CursoReporteExcelQueryRequest();
+            var resultado = await _sender.Send(query, cancellationToken);
+            return File(resultado.ToArray(), "text/csv", "cursos.csv");
         }
 
     }
