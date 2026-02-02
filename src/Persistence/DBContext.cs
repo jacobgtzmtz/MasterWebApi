@@ -1,14 +1,15 @@
 
 using Domain;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Models;
 
 namespace Persistence
 {
-    public class MasterNetDBContext : DbContext
+    public class MasterNetDBContext : IdentityDbContext<AppUser>
     {
         //Crear cadena de conexion
         //Mapear Modelos a tablas
-        public MasterNetDBContext(){}
         public MasterNetDBContext(DbContextOptions<MasterNetDBContext> options) : base(options)
         {
         }
@@ -18,20 +19,17 @@ namespace Persistence
         public DbSet<Precio>? Precios { get; set; }
         public DbSet<Calificacion>? Calificaciones { get; set; }
         public DbSet<Foto>? Fotos { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("Host=localhost;Database=masternetdb;Username=postgres;Password=abcd1234")
-            .LogTo(Console.WriteLine, 
-            new [] {DbLoggerCategory.Database.Command.Name}, 
-            Microsoft.Extensions.Logging.LogLevel.Information).EnableSensitiveDataLogging();
-           // base.OnConfiguring(optionsBuilder);
-        }       
+        public DbSet<AppUser>? Usuarios { get; set; }
+    
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){}       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configuraciones Fluent API
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<AppUser>().ToTable("usuarios");
+
             modelBuilder.Entity<Curso>().ToTable("cursos");
             modelBuilder.Entity<Instructor>().ToTable("instructores");
             modelBuilder.Entity<CursoInstructor>().ToTable("curso_instructores");
