@@ -6,4 +6,24 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+  <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <ProjectReference Include="../Domain/Domain.csproj" />
+    <ProjectReference Include="../Persistence/Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.3.0" />
+    <PackageReference Include="MediatR" Version="14.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Cursos/" />
+    <Folder Include="Cursos/CursoCreate/" />
+    <Folder Include="Cursos/CursoDelete/" />
+    <Folder Include="Cursos/CursoUpdate/" />
+    <Folder Include="Cursos/GetCurso/" />
+    <Folder Include="Cursos/GetCursos/" />
+  </ItemGroup>
+
 </Project>
