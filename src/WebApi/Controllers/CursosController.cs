@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Application.Cursos.CursoCreate;
+using System.Threading.Tasks;
+using System;
+using System.Threading;
 
 
 //Para las versiones de SDK 9 no viene configurado los controles en el program así que hay que agregarlos manualmente

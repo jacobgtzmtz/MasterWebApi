@@ -20,9 +20,6 @@ namespace Persistence
         public DbSet<Calificacion>? Calificaciones { get; set; }
         public DbSet<Foto>? Fotos { get; set; }
         public DbSet<AppUser>? Usuarios { get; set; }
-    
-        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){}       
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configuraciones Fluent API
