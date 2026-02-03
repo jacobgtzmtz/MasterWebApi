@@ -1,15 +1,11 @@
 using Application;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Persistence;
 using Persistence.Models;
+using Application.Interfaces;
+using Infrastructure.Reports;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddApplicationServices();
 
 //Agregar endpoints
 builder.Services.AddControllers();
@@ -18,6 +14,9 @@ builder.Services.AddControllers();
 /* builder.Services.AddDbContext<MasterNetDBContext>(options => 
 options.UseNpgsql(builder.Configuration.GetConnectionString("MasterNetDBConnection"))); */
 builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddApplicationServices();
+builder.Services.AddTransient(typeof(IReportService<>), typeof(ReportService<>));
+
 
 //Agregar Identity Service
 builder.Services.AddIdentityCore<AppUser>()
