@@ -25,6 +25,10 @@
     <Folder Include="Cursos/CursoUpdate/" />
     <Folder Include="Cursos/GetCurso/" />
     <Folder Include="Cursos/GetCursos/" />
+    <Folder Include="Instructores/" />
+    <Folder Include="Instructores/GetInstructores/" />
+    <Folder Include="Precios/" />
+    <Folder Include="Precios/GetPrecios/" />
   </ItemGroup>
 
 </Project>
