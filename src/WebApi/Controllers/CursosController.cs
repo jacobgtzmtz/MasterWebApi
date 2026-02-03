@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using Application.Cursos.CursoCreate;
-using System.Threading.Tasks;
-using System;
-using System.Threading;
 using static Application.Cursos.CursoReporteExcel.CursoReporteExcelQuery;
 
 

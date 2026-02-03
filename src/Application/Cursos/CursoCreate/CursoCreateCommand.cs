@@ -1,5 +1,6 @@
 using Application.Core;
 using Domain;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -8,6 +9,14 @@ namespace Application.Cursos.CursoCreate;
 public class CursoCreateCommand
 {
     public record CursoCreateCommandRequest(CursoCreateRequest Request) : IRequest<Result<Guid>>;
+
+    public class CursoCreateCommandRequestValidator : AbstractValidator<CursoCreateCommandRequest>
+    {
+        public CursoCreateCommandRequestValidator()
+        {
+            RuleFor(x => x.Request).SetValidator(new CursoCreateValidator());
+        }
+    }
 
     internal class CursoCreateCommandHandler : IRequestHandler<CursoCreateCommandRequest, Result<Guid>>
     {

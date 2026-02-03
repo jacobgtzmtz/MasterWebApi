@@ -1,3 +1,6 @@
+using Application.Cursos.CursoCreate;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 namespace Application
 {
@@ -10,6 +13,9 @@ namespace Application
             services.AddMediatR(cfg => 
              {cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);}
              );
+
+              services.AddFluentValidationAutoValidation();
+             services.AddValidatorsFromAssemblyContaining<CursoCreateCommand>();
 
             return services;
         }
