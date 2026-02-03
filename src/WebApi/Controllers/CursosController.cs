@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using Application.Cursos.CursoCreate;
 using static Application.Cursos.CursoReporteExcel.CursoReporteExcelQuery;
+using Application.Cursos.GetCurso;
+using static Application.Cursos.GetCurso.GetCursoQuery;
 
 
 //Para las versiones de SDK 9 no viene configurado los controles en el program así que hay que agregarlos manualmente
@@ -33,6 +35,14 @@ namespace Controllers
             var query = new CursoReporteExcelQueryRequest();
             var resultado = await _sender.Send(query, cancellationToken);
             return File(resultado.ToArray(), "text/csv", "cursos.csv");
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult>CursoGet(Guid id, CancellationToken cancellationToken)
+        {
+            var query = new GetCursoQueryRequest { Id = id };
+            var resultado = await _sender.Send(query, cancellationToken);
+            return resultado.IsSuccess ? Ok(resultado.Value) : NotFound(resultado.Error);
         }
 
     }

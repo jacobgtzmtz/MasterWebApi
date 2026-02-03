@@ -4,6 +4,6 @@ public record InstructorResponse
 (
     Guid Id,
     string Nombre,
-    string Apellido,
+    string Apellidos,
     string Grado
 );
