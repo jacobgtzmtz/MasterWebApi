@@ -4,6 +4,8 @@ using Application.Cursos.CursoCreate;
 using static Application.Cursos.CursoReporteExcel.CursoReporteExcelQuery;
 using Application.Cursos.GetCurso;
 using static Application.Cursos.GetCurso.GetCursoQuery;
+using Application.Cursos.GetCursos;
+using static Application.Cursos.GetCursos.GetCursosQuery;
 
 
 //Para las versiones de SDK 9 no viene configurado los controles en el program así que hay que agregarlos manualmente
@@ -13,10 +15,10 @@ namespace Controllers
 {
     [ApiController]
     [Route("api/cursos")]
-    public class Cursoscontroller: ControllerBase
+    public class CursosController : ControllerBase
     {
         private readonly ISender _sender;
-        public Cursoscontroller(ISender sender)
+        public CursosController(ISender sender)
         {
             _sender = sender;
         }
@@ -25,7 +27,7 @@ namespace Controllers
         public async Task<ActionResult<Guid>>CursoCreate([FromForm] CursoCreateRequest request, CancellationToken cancellationToken)
         {
             var command = new CursoCreateCommand.CursoCreateCommandRequest(request);
-            var resultado = await _sender.Send(command);
+            var resultado = await _sender.Send(command, cancellationToken);
             return Ok(resultado);
         }
 
@@ -35,6 +37,16 @@ namespace Controllers
             var query = new CursoReporteExcelQueryRequest();
             var resultado = await _sender.Send(query, cancellationToken);
             return File(resultado.ToArray(), "text/csv", "cursos.csv");
+        }
+
+        [HttpGet("PaginationCursos")]
+        public async Task<ActionResult>PaginationCursos(
+            [FromBody] GetCursosRequest request,
+            CancellationToken cancellationToken)
+        {
+         var query = new GetCursosQueryRequest { CursosRequest = request};  
+         var resultado = await _sender.Send(query, cancellationToken);
+         return resultado.IsSuccess ? Ok(resultado.Value) : NotFound(resultado.Error);
         }
 
         [HttpGet("{id}")]

@@ -1,10 +1,12 @@
 using System;
+using System.Linq;
 using Application.Calificaciones.GetCalificaciones;
 using Application.Core;
 using Application.Cursos.GetCurso;
 using Application.Fotos.GetFotos;
 using Application.Instructores.GetInstructores;
 using Application.Precios.GetPrecios;
+using Domain;
 using MediatR;
 using Persistence;
 
@@ -14,7 +16,7 @@ public class GetCursosQuery
 {
     public record GetCursosQueryRequest: IRequest<Result<PagedList<CursoResponse>>>
     {
-        public GetCursosRequest Params { get; set; } = new GetCursosRequest();
+        public GetCursosRequest CursosRequest { get; set; } = new GetCursosRequest();
     }
         
     internal class GetCursosQueryHandler : IRequestHandler<GetCursosQueryRequest, Result<PagedList<CursoResponse>>>
@@ -29,15 +31,44 @@ public class GetCursosQuery
         public async Task<Result<PagedList<CursoResponse>>> Handle(GetCursosQueryRequest request, CancellationToken cancellationToken)
         {
             var query = _dbContext.Cursos!.AsQueryable();
+            var predicate = ExpressionBuilder.New<Curso>();
 
-            if (!string.IsNullOrEmpty(request.Params.Titulo))
+            if (!string.IsNullOrEmpty(request.CursosRequest.Titulo))
             {
-                query = query.Where(x => x.Titulo!.Contains(request.Params.Titulo));
+                //query = query.Where(x => x.Titulo!.Contains(request.CursosRequest.Titulo));
+                predicate = predicate.And(x => x.Titulo!.ToLower().Contains(request.CursosRequest.Titulo.ToLower()));
             }
 
-            if (!string.IsNullOrEmpty(request.Params.Descripcion))
+            if (!string.IsNullOrEmpty(request.CursosRequest.Descripcion))
             {
-                query = query.Where(x => x.Descripcion!.Contains(request.Params.Descripcion));
+                //query = query.Where(x => x.Descripcion!.Contains(request.CursosRequest.Descripcion));
+                predicate = predicate.And(x => x.Descripcion!.ToLower().Contains(request.CursosRequest.Descripcion.ToLower()));
+            }
+
+            query = query.Where(predicate);
+
+            if(request.CursosRequest.OrderBy != null)
+            {
+                switch (request.CursosRequest.OrderBy.ToLower())
+                {
+                    case "titulo":
+                        query = request.CursosRequest.Ascending
+                            ? query.OrderBy(x => x.Titulo)
+                            : query.OrderByDescending(x => x.Titulo);
+                        break;
+                    case "descripcion":
+                        query = request.CursosRequest.Ascending
+                            ? query.OrderBy(x => x.Descripcion)
+                            : query.OrderByDescending(x => x.Descripcion);
+                        break;
+                    default:
+                        query = query.OrderBy(x => x.Titulo);
+                        break;
+                }
+            }
+            else
+            {
+                query = query.OrderBy(x => x.Titulo);
             }
 
             var projection = query.Select(x => new CursoResponse(
@@ -50,7 +81,7 @@ public class GetCursosQuery
                 x.Fotos!.Select(f => new FotoResponse(f.Url!, f.CursoId ?? Guid.Empty)).ToList()
             ));
 
-            var pagedList = await PagedList<CursoResponse>.CreateAsync(projection, request.Params.PageNumber, request.Params.PageSize);
+            var pagedList = await PagedList<CursoResponse>.CreateAsync(projection, request.CursosRequest.PageNumber, request.CursosRequest.PageSize);
 
             return Result<PagedList<CursoResponse>>.Success(pagedList);
         }
